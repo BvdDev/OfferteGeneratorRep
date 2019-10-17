@@ -23,10 +23,14 @@ namespace OfferteGenerator.Controllers
             string countRows = newSqlConnection.CountRows("ImportArtikelen");
             int countRowsInt = Convert.ToInt32(countRows);
             if (startRow < 0) startRow = 0;
-            if (startRow + showNr > countRowsInt) startRow = countRowsInt - showNr;
+            if (startRow + showNr > countRowsInt)
+            {
+                ViewBag.pageshowNrArt = showNr;
+                showNr = countRowsInt - startRow;
+            }
+            else ViewBag.pageshowNrArt = showNr;
             ViewBag.SqlCount = countRows;
             ViewBag.startRow = startRow;
-            ViewBag.pageshowNrArt = showNr;
             return View(newSqlConnection.Select("ImportArtikelen", startRow, showNr));
         }
 
