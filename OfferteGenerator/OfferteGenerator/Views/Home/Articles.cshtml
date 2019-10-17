@@ -1,0 +1,113 @@
+﻿@model IEnumerable<OfferteGenerator.Models.AxArticle>
+
+@{
+    ViewBag.Title = "Artikelen";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Articles</h2>
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.WSP_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Art_code_Lev)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Art_nr_Merk)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Omschrijving)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fabrikant)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Veel_Gebruikt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Bruto_Prijs)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Netto_Prijs)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Korting)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Leverancier)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.WSP_Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Art_code_Lev)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Art_nr_Merk)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Omschrijving)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fabrikant)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Veel_Gebruikt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bruto_Prijs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Netto_Prijs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Korting)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Leverancier)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="row" style="width: 100%">
+    <label>Aantal Artikelen: @ViewBag.SqlCount</label>
+    <label style="padding-left: 30px">Artikel: @ViewBag.startRow - @(ViewBag.startRow + ViewBag.pageShowNrArt)</label>
+    @if (ViewBag.startRow > ViewBag.pageShowNrArt - 1)
+    {
+        <a id="BtnVorige" href="@Url.Action("Articles", "Home", new { startRow = ViewBag.startRow - ViewBag.pageShowNrArt, showNr = ViewBag.pageShowNrArt })" style="width: 120px; margin-left: 30px" class="btn btn-primary btn-lg">Vorige</a>
+    }
+    @if (ViewBag.startRow < Convert.ToInt32(ViewBag.SqlCount) - ViewBag.pageShowNrArt)
+    {
+        <a id="BtnVolgende" href="@Url.Action("Articles", "Home", new { startRow = ViewBag.startRow + ViewBag.pageShowNrArt, showNr = ViewBag.pageShowNrArt })" style="width: 120px; margin-left: 30px" class="btn btn-primary btn-lg">Volgende</a>
+    }
+    <input id="pageNrInput" class="form-control" type="number" style="width:100px; margin-right: 10px; float: right; margin-top: 5px" value="@ViewBag.pageShowNrArt"/>
+    <label style="float: right; margin-right: 20px; margin-top: 10px">Aantal Artikelen:</label>
+</div>
+
+<script type="text/javascript">
+    pageNrInput = document.getElementById("pageNrInput");
+    pageNrInput.addEventListener("keyup", function (event) {
+        if (event.keyCode == 13)
+        {
+            window.location = '/Home/Articles?startRow=' + @ViewBag.startRow + '&showNr=' + pageNrInput.value;
+        }
+    });
+</script>
