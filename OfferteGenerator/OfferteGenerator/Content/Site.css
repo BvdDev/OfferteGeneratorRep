@@ -39,3 +39,7 @@ textarea {
     background-color: white;
 }
 
+.table.ConfigObj{
+    margin: 20px 10px 20px 10px;
+    width: 30%;
+}

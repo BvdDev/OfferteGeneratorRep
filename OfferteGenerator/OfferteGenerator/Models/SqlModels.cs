@@ -25,11 +25,11 @@ namespace OfferteGenerator.Models
         public string Veel_Gebruikt { get; set; }
 
         [Display(Name = "Bruto Prijs")]
-        public float Bruto_Prijs { get; set; }
+        public decimal Bruto_Prijs { get; set; }
 
         [Display(Name = "Netto Prijs")]
-        public float Netto_Prijs { get; set; }
-        public float Korting { get; set; }
+        public decimal Netto_Prijs { get; set; }
+        public decimal Korting { get; set; }
         public string Leverancier { get; set; }
     }
 
@@ -38,6 +38,6 @@ namespace OfferteGenerator.Models
         public int Id { get; set; }
         [Display(Name = "Naam object")]
         public string ObjectNaam { get; set; }
-        public float Aantal { get; set; }
+        public decimal Aantal { get; set; }
     }
 }

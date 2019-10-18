@@ -22,3 +22,20 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.ArticleNavBar {
+    position: fixed;
+    bottom: 0;
+    display: block;
+    width: 100%;
+    background-color: #dbdbdb;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+
+
+.index{
+    background-color: white;
+}
+

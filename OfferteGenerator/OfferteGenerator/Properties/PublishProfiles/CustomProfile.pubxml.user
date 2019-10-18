@@ -40,10 +40,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2019 21:34:30</publishTime>
     </File>
     <File Include="bin/OfferteGenerator.dll">
-      <publishTime>10/18/2019 00:31:39</publishTime>
+      <publishTime>10/18/2019 20:33:29</publishTime>
     </File>
     <File Include="bin/OfferteGenerator.pdb">
-      <publishTime>10/18/2019 00:31:39</publishTime>
+      <publishTime>10/18/2019 20:33:29</publishTime>
     </File>
     <File Include="bin/Renci.SshNet.dll">
       <publishTime>10/17/2019 21:34:30</publishTime>
@@ -238,7 +238,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2019 21:34:29</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>10/17/2019 21:34:29</publishTime>
+      <publishTime>10/18/2019 20:14:21</publishTime>
     </File>
     <File Include="favicon.ico">
       <publishTime>10/17/2019 21:34:29</publishTime>
@@ -262,7 +262,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>10/17/2019 21:34:29</publishTime>
     </File>
     <File Include="Scripts/All.js">
-      <publishTime>10/17/2019 22:59:21</publishTime>
+      <publishTime>10/18/2019 20:14:21</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>10/17/2019 21:34:29</publishTime>
@@ -300,20 +300,29 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Scripts/jquery.validate.unobtrusive.min.js">
       <publishTime>10/17/2019 21:34:29</publishTime>
     </File>
+    <File Include="Scripts/knockout-3.5.0.debug.js">
+      <publishTime>10/18/2019 20:14:21</publishTime>
+    </File>
+    <File Include="Scripts/knockout-3.5.0.js">
+      <publishTime>10/18/2019 20:14:21</publishTime>
+    </File>
     <File Include="Scripts/modernizr-2.8.3.js">
       <publishTime>10/17/2019 21:34:29</publishTime>
     </File>
     <File Include="Views/Home/Articles.cshtml">
-      <publishTime>10/18/2019 00:31:03</publishTime>
+      <publishTime>10/18/2019 20:14:21</publishTime>
+    </File>
+    <File Include="Views/Home/Configuratie.cshtml">
+      <publishTime>10/18/2019 20:14:21</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>10/17/2019 21:53:26</publishTime>
+      <publishTime>10/18/2019 20:14:21</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>10/17/2019 21:34:29</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>10/18/2019 20:14:21</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>10/17/2019 21:34:29</publishTime>

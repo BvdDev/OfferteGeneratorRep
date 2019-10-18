@@ -2,8 +2,12 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
+<div class="jumbotron index">
     <h1>Offerte Generator</h1>
     <p class="lead">De OfferteGenerator berekent de globale kostprijs van een project.</p>
     <p><a href="@Url.Action("Articles", "Home", new { startRow = 0, showNr = 18 })" class="btn btn-primary btn-lg">Bekijk Artikelen &raquo;</a></p>
+    <p>
+        Locatie van Database: <select class="form-control" style="display: inline" data-bind="options: DBLocations,
+                                            value: DBLocation"></select>
+    </p>
 </div>
