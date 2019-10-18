@@ -32,4 +32,12 @@ namespace OfferteGenerator.Models
         public float Korting { get; set; }
         public string Leverancier { get; set; }
     }
+
+    public class WwsObject
+    {
+        public int Id { get; set; }
+        [Display(Name = "Naam object")]
+        public string ObjectNaam { get; set; }
+        public float Aantal { get; set; }
+    }
 }

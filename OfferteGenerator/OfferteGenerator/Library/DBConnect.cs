@@ -12,12 +12,25 @@ namespace OfferteGenerator.Library
 {
     public class DBConnect
     {
-        readonly private string ConnectionString = "OfferteGeneratorThuis";
-        public List<AxArticle> Select(string tablename, int rowStart, int rowCount)
+        public string ConnectionString;
+
+        public DBConnect(string connectionsString)
+        {
+            ConnectionString = connectionsString;
+        }
+
+        public List<object> Select(string tablename, int rowStart, int rowCount)
         {
             using (var con = new MySqlConnection(CnnVal(ConnectionString)))
             {
-                return con.Query<AxArticle>($"select * from {tablename} limit {rowStart.ToString()} , {rowCount.ToString()}").ToList();
+                if(rowStart == 0 && rowCount == 0)
+                {
+                    return con.Query<dynamic>($"select * from {tablename}").ToList();
+                }
+                else
+                {
+                    return con.Query<dynamic>($"select * from {tablename} limit {rowStart.ToString()} , {rowCount.ToString()}").ToList();
+                }
             }
         }
 

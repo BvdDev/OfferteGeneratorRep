@@ -1,0 +1,35 @@
+﻿@model IEnumerable<OfferteGenerator.Models.WwsObject>
+
+@{
+    ViewBag.Title = "Configuratie";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Configuratie</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ObjectNaam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aantal)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ObjectNaam)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Aantal)
+        </td>
+
+    </tr>
+}
+
+</table>

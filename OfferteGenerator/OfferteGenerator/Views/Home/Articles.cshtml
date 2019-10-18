@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Articles</h2>
+<h2>Artikelen</h2>
 
 
 <table class="table">
@@ -85,8 +85,8 @@
     }
 
 </table>
-<div class="row" style="width: 100%">
-    <label>Aantal Artikelen: @ViewBag.SqlCount</label>
+<div class="row ArticleNavBar">
+    <label style="margin-left: 20px">Aantal Artikelen: @ViewBag.SqlCount</label>
     <label style="width: 200px; padding-left: 30px">Artikel: @ViewBag.startRow - @(ViewBag.startRow + ViewBag.pageShowNrArt)</label>
     @if (ViewBag.startRow != 0)
     {

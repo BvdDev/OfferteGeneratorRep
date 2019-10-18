@@ -6,12 +6,13 @@ using System.Web.Mvc;
 using System.IO;
 using CsvHelper;
 using OfferteGenerator.Models;
+using System.Dynamic;
 
 namespace OfferteGenerator.Controllers
 {
     public class HomeController : Controller
     {
-        public OfferteGenerator.Library.DBConnect newSqlConnection = new Library.DBConnect();
+        public string DBlocation = "Werk";
 
         public ActionResult Index()
         {
@@ -20,6 +21,7 @@ namespace OfferteGenerator.Controllers
 
         public ActionResult Articles(int startRow, int showNr)
         {
+            OfferteGenerator.Library.DBConnect newSqlConnection = new Library.DBConnect("OfferteGenerator" + DBlocation);
             string countRows = newSqlConnection.CountRows("ImportArtikelen");
             int countRowsInt = Convert.ToInt32(countRows);
             if (startRow < 0) startRow = 0;
@@ -31,13 +33,26 @@ namespace OfferteGenerator.Controllers
             else ViewBag.pageshowNrArt = showNr;
             ViewBag.SqlCount = countRows;
             ViewBag.startRow = startRow;
-            return View(newSqlConnection.Select("ImportArtikelen", startRow, showNr));
+            var output = newSqlConnection.Select("ImportArtikelen", startRow, showNr);
+            foreach(var item in output)
+            {
+                AxArticle newObject = new AxArticle();
+                newObject.Id = (int)item.GetType().GetProperty("Id").GetValue(output, null);
+            }
+            return View(output);
+        }
+
+        public ActionResult Configuratie()
+        {
+            OfferteGenerator.Library.DBConnect newSqlConnection = new Library.DBConnect("OfferteGenerator" + DBlocation);
+            var output = newSqlConnection.Select("ImportArtikelen", 0, 0);
+            return View(output);
         }
 
         [HttpGet]
         public JsonResult GetArticles()
         {
-            
+            OfferteGenerator.Library.DBConnect newSqlConnection = new Library.DBConnect("OfferteGenerator");
             return Json(newSqlConnection.Select("ImportArtikelen", 0, 20), JsonRequestBehavior.AllowGet);
         }
     }
