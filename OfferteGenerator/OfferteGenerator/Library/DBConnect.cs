@@ -19,13 +19,23 @@ namespace OfferteGenerator.Library
             ConnectionString = connectionsString;
         }
 
-        public List<object> Select(string tablename, int rowStart, int rowCount)
+        public List<object> Select(string tablename, int rowStart, int rowCount, int[] ids)
         {
             using (var con = new MySqlConnection(CnnVal(ConnectionString)))
             {
-                if(rowStart == 0 && rowCount == 0)
+                if(rowStart == 0 && rowCount == 0 && ids == null)
                 {
                     return con.Query<dynamic>($"select * from {tablename}").ToList();
+                }
+                else if(ids != null)
+                {
+                    string IdsString = "(";
+                    for(int i = 0; i < ids.Count() - 1; ++i)
+                    {
+                        IdsString += "'" + ids[i] + "',";
+                    }
+                    IdsString += "'" + ids[ids.Count() - 1] + "')";
+                    return con.Query<dynamic>($"select * from {tablename} where Id in {IdsString}").ToList();
                 }
                 else
                 {

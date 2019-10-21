@@ -4,28 +4,47 @@
     ViewBag.Title = "Configuratie";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="sidenav">
+    <table class="table table-bordered table-hover ConfigObj">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ObjectNaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aantal)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr onclick="GetObjectData(this)" data-assigned-id="@item.ObjectNaam">
+                <td>
+                    @Html.DisplayFor(modelItem => item.ObjectNaam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Aantal)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+<div id="objectDataList" style="height: 100%; top: 50px; margin-left:550px">
+
+</div>
 
 
-<table class="table table-bordered table-hover ConfigObj">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ObjectNaam)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Aantal)
-        </th>
-    </tr>
+<script type="text/javascript">
+    function GetObjectData(elem) {
+        var ObjectNaam = $(elem).data('assigned-id');
+        $.ajax({
+            url: '@Url.Action("GetObjectArticles", "Home")',
+            data: { objectNaam: ObjectNaam},
+        type: 'GET',
+            success: function (html) {
+            document.getElementById("objectDataList").innerHTML = html;
+        },
+        });
+    }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ObjectNaam)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Aantal)
-        </td>
-
-    </tr>
-}
-
-</table>
+</script>

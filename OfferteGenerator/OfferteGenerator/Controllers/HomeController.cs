@@ -34,7 +34,7 @@ namespace OfferteGenerator.Controllers
             ViewBag.SqlCount = countRows;
             ViewBag.startRow = startRow;
             List<AxArticle> axArticles = new List<AxArticle>();
-            foreach(dynamic item in newSqlConnection.Select("ImportArtikelen", startRow, showNr))
+            foreach(dynamic item in newSqlConnection.Select("ImportArtikelen", startRow, showNr, null))
             {
                 AxArticle newObject = new AxArticle();
                 newObject.Id = item.Id;
@@ -56,7 +56,7 @@ namespace OfferteGenerator.Controllers
         {
             OfferteGenerator.Library.DBConnect newSqlConnection = new Library.DBConnect("OfferteGenerator" + DBlocation);
             List<WwsObject> wwsObjecten = new List<WwsObject>();
-            foreach (dynamic item in newSqlConnection.Select("WwsObjecten", 0, 0))
+            foreach (dynamic item in newSqlConnection.Select("WwsObjecten", 0, 0, null))
             {
                 WwsObject newObject = new WwsObject();
                 newObject.Id = item.Id;
@@ -71,7 +71,38 @@ namespace OfferteGenerator.Controllers
         public JsonResult GetArticles()
         {
             OfferteGenerator.Library.DBConnect newSqlConnection = new Library.DBConnect("OfferteGenerator");
-            return Json(newSqlConnection.Select("WwsObjecten", 0, 20), JsonRequestBehavior.AllowGet);
+            return Json(newSqlConnection.Select("WwsObjecten", 0, 20, null), JsonRequestBehavior.AllowGet);
         }
+
+
+        public ActionResult GetObjectArticles(int ObjectNaam)
+        {
+            OfferteGenerator.Library.DBConnect newSqlConnection = new Library.DBConnect("OfferteGenerator" + DBlocation);
+            List<AxArticle> ConfigArticles = new List<AxArticle>();
+            int[] Ids = null;
+            switch (ObjectNaam)
+            {
+                
+            }
+            foreach (dynamic item in newSqlConnection.Select("ImportArtikelen", 0, 0, Ids))
+            {
+                AxArticle newObject = new AxArticle();
+                newObject.Id = item.Id;
+                newObject.WSP_Code = item.WSP_Code;
+                newObject.Art_code_Lev = item.Art_code_Lev;
+                newObject.Art_nr_Merk = item.Art_nr_Merk;
+                newObject.Omschrijving = item.Omschrijving;
+                newObject.Veel_Gebruikt = item.Veel_Gebruikt;
+                newObject.Bruto_Prijs = item.Bruto_Prijs;
+                newObject.Netto_Prijs = item.Netto_Prijs;
+                newObject.Korting = item.Korting;
+                newObject.Leverancier = item.Leverancier;
+                ConfigArticles.Add(newObject);
+            }
+            ViewBag.pageshowNrArt = 18;
+            ViewBag.startRow = 0;
+            return View("Articles", ConfigArticles);
+        }
+
     }
 }
